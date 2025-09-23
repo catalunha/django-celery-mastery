@@ -2,6 +2,8 @@ uv init
 uv sync
 django-admin startproject app .
 
+docker compose up -d --build
+
 (django-celery-mastery) catalunha@pop-os:~/apps/django-celery-mastery-course/django-celery-mastery$ docker compose up
 
 (django-celery-mastery) catalunha@pop-os:~/apps/django-celery-mastery-course/django-celery-mastery$ docker exec -it django /bin/bash

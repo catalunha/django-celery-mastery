@@ -1,4 +1,7 @@
 services:
+
+  redis:
+    image: redis:8.2.1-alpine
   django:
     container_name: django
     build:
@@ -12,3 +15,20 @@ services:
       - DEBUG=1
       - SECRET_KEY=0930jd30j9jd09j09j109fj01j9f
       - ALLOWED_HOSTS=localhost,127.0.0.1
+    depends_on:
+      - redis
+  celery:
+    container_name: celery
+    build:
+      context: .
+    # command: bash -c "uv run python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./app:/code/app/
+    # ports:
+    #   - 8000:8000
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=0930jd30j9jd09j09j109fj01j9f
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+    depends_on:
+      - redis
