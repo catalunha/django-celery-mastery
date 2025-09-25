@@ -21,7 +21,7 @@ services:
     container_name: celery
     build:
       context: .
-    # command: bash -c "uv run python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "uv run celery --app=app worker -l INFO"
     volumes:
       - ./app:/code/app/
     # ports:
